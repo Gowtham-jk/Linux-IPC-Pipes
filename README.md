@@ -25,7 +25,6 @@ Testing the C Program for the desired output.
 
 ## C Program that illustrate communication between two process using unnamed pipes using Linux API system calls
 ```
-#include<stdio.h>
 #include<stdlib.h>
 #include<sys/types.h> 
 #include<sys/stat.h> 
@@ -52,18 +51,7 @@ client(p1[1],p2[0]);
 wait(waits); 
 return 0; 
 } 
-void client(int wfd,int rfd) {
-int i,j,n; char fname[2000];
-char buff[2000];
-printf("ENTER THE FILE NAME :");
-scanf("%s",fname);
-printf("CLIENT SENDING THE REQUEST .... PLEASE WAIT\n");
-sleep(10);
-write(wfd,fname,2000);
-n=read(rfd,buff,2000);
-buff[n]='\0';
-printf("THE RESULTS OF CLIENTS ARE ...... \n"); write(1,buff,n);
-}
+
 void server(int rfd,int wfd) 
 { 
 int i,j,n; 
@@ -79,17 +67,24 @@ else
 n=read(fd,buff,2000); 
 write(wfd,buff,n); 
 }
-
+void client(int wfd,int rfd) {
+int i,j,n; char fname[2000];
+char buff[2000];
+printf("ENTER THE FILE NAME :");
+scanf("%s",fname);
+printf("CLIENT SENDING THE REQUEST .... PLEASE WAIT\n");
+sleep(10);
+write(wfd,fname,2000);
+n=read(rfd,buff,2000);
+buff[n]='\0';
+printf("THE RESULTS OF CLIENTS ARE ...... \n"); write(1,buff,n);
+}
 ```
 
 
-
-
 ## OUTPUT
-![image](https://github.com/shoaib3136/Linux-IPC-Pipes/assets/117919362/b2344dc5-d480-4350-9d08-37241f202aca)
 
-
-
+![ex3op1](ex3op1.png)
 
 ## C Program that illustrate communication between two process using named pipes using Linux API system calls
 ```
@@ -103,16 +98,10 @@ int res = mkfifo("/tmp/my_fifo", 0777);
 if (res == 0) printf("FIFO created\n");
 exit(EXIT_SUCCESS);
 }
-
 ```
 
-
-
-
 ## OUTPUT
-![image](https://github.com/shoaib3136/Linux-IPC-Pipes/assets/117919362/65326ac7-36da-4b55-8822-d9a9bc0680b7)
-
-
+![ex3op2](ex3op2.png)
 
 # RESULT:
 The program is executed successfully.
